@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background:#ccc;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="显示" >
+<input type="button" value="显示1" >
+<div class="box"></div>
+<script src="ajax.js"></script>
+<script>
+    var box=document.getElementsByClassName("box");
+    var btn=document.getElementsByTagName("input");
+    var arr=["11.txt","22.txt"];
+
+    for(var i=0;i<btn.length;i++){
+        btn[i].index=i;
+        btn[i].onclick=function () {
+            ajax(arr[this.index],function (str) {
+                box.innerHTML=str;
+            })
+        }
+    }
+</script>
+</body>
+</html>

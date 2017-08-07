@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 30px;
+        }
+        ul li{
+            float: left;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <!--<div class="list">-->
+        <!--<strong>书名：</strong><span>javascript</span>-->
+        <!--<strong>价格：</strong><span>50</span>-->
+    <!--</div>-->
+</div>
+<ul>
+    <li class="btn">第一页</li>
+    <li class="btn">第二页</li>
+    <li class="btn">第三页</li>
+</ul>
+</body>
+</html>
+<script src="ajax.js"></script>
+<script>
+    var btn=document.getElementsByClassName("btn");
+    var box=document.getElementsByClassName("box")[0];
+
+
+    for(var i=0;i<btn.length;i++){
+        btn[i].index=i;
+        btn[i].onclick=function () {
+
+            ajax("page0"+(this.index+1)+".json",function (str) {
+                var arr=JSON.parse(str);
+                box.innerHTML="";
+                for(var i=0;i<arr.length;i++){
+                var list=document.createElement("div");
+                    box.appendChild(list);
+
+                    list.innerHTML='<strong>书名：</strong><span>'+arr[i].name+'</span>'+
+                                    '<strong>价格：</strong><span>'+arr[i].price+'</span>'
+            }
+
+            })
+        }
+    }
+</script>
